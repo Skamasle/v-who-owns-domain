@@ -1,0 +1,24 @@
+#!/bin/bash
+# Usage v-who-owns domain.com 
+# v-who-owns http://domain.com
+domain=$1
+conf=web.conf
+path=/usr/local/vesta/data/users
+
+UserIsIn () {
+echo $1
+exit 0
+}
+
+FindUser () {
+v-list-users plain |awk '{ print $1 }' | while read user
+    do
+        grep -wq $domain ${path}/${user}/${conf}
+        if [ $? == 0 ]; then
+            UserIsIn $user
+        fi
+    done
+}
+domain=$(echo $domain | sed "s/http:\/\// /" | sed "s/https:\/\// /" | tr "/" " ")
+
+FindUser
