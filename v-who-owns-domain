@@ -1,6 +1,9 @@
 #!/bin/bash
-# Usage v-who-owns domain.com 
-# v-who-owns http://domain.com
+# Find what user owns domain in vestacp panel
+# Vestacp.com | https://github.com/Skamasle
+# Usage:
+# v-who-owns-domain domain.com 
+# v-who-owns-domain http://domain.com
 domain=$1
 conf=web.conf
 path=/usr/local/vesta/data/users
